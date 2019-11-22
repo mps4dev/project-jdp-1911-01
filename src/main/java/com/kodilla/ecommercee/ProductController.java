@@ -19,33 +19,33 @@ import java.util.List;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/v1/product")
+@RequestMapping("/v1/products")
 public class ProductController {
 
     @Autowired
     private ProductService productService;
 
-    @GetMapping(value = "/getProducts")
-    public List<Product> getProducts() {
+    @GetMapping(value = "/products")
+    public List<ProductDto> getProducts() {
         return productService.getProducts();
     }
 
-    @GetMapping(value = "/getProduct/{productId}")
-    public Product getProduct(@PathVariable Long productId) throws ProductNotFoundException {
-        return productService.getProductById(productId).orElseThrow(ProductNotFoundException::new);
+    @GetMapping(value = "/{productId}")
+    public ProductDto getProduct(@PathVariable Long productId) throws ProductNotFoundException {
+        return productService.getProductById(productId);
     }
 
-    @PostMapping(value = "/createProduct")
+    @PostMapping
     public void createProduct(@RequestBody ProductDto productDto) {
         productService.saveProduct(productDto);
     }
 
-    @PutMapping(value = "/updateProduct/{productId}")
+    @PutMapping(value = "/{productId}")
     public ProductDto updateProduct(@RequestBody ProductDto productDto, @PathVariable Long productId) throws ProductNotFoundException {
         return productService.updateProduct(productDto, productId);
     }
 
-    @DeleteMapping(value = "/deleteProduct/{productId}")
+    @DeleteMapping(value = "/{productId}")
     public void deleteProduct(@PathVariable Long productId) {
         productService.deleteProductById(productId);
     }

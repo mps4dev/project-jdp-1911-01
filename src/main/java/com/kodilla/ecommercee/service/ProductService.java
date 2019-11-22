@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class ProductService {
@@ -20,12 +19,13 @@ public class ProductService {
     @Autowired
     private ProductMapper productMapper;
 
-    public List<Product> getProducts() {
-        return productRepository.findAll();
+    public List<ProductDto> getProducts() {
+        return productMapper.mapToProductDtoList(productRepository.findAll());
     }
 
-    public Optional<Product> getProductById(Long id) {
-        return productRepository.findById(id);
+    public ProductDto getProductById(Long id) throws ProductNotFoundException {
+        Product product = productRepository.findById(id).orElseThrow(ProductNotFoundException::new);
+        return productMapper.mapToProductDto(product);
     }
 
     public Product saveProduct(ProductDto productDto) {
