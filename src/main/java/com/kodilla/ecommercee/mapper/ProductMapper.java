@@ -13,6 +13,7 @@ public class ProductMapper {
 
     public ProductDto mapToProductDto(Product product) {
         return Optional.of(new ProductDto(
+                product.getId(),
                 product.getName(),
                 product.getDescription(),
                 product.getPrice())).orElse(null);
@@ -28,7 +29,7 @@ public class ProductMapper {
 
     public List<ProductDto> mapToProductDtoList(List<Product> products) {
         return products.stream()
-                .map(product -> new ProductDto(product.getName(), product.getDescription(), product.getPrice()))
+                .map(product -> new ProductDto(product.getId(), product.getName(), product.getDescription(), product.getPrice()))
                 .collect(Collectors.toList());
     }
 

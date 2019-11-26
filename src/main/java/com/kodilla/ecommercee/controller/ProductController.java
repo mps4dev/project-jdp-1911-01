@@ -1,6 +1,5 @@
-package com.kodilla.ecommercee;
+package com.kodilla.ecommercee.controller;
 
-import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.domain.ProductNotFoundException;
 import com.kodilla.ecommercee.service.ProductService;
@@ -25,12 +24,12 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @GetMapping(value = "/products")
+    @GetMapping("/products")
     public List<ProductDto> getProducts() {
         return productService.getProducts();
     }
 
-    @GetMapping(value = "/{productId}")
+    @GetMapping("/{productId}")
     public ProductDto getProduct(@PathVariable Long productId) throws ProductNotFoundException {
         return productService.getProductById(productId);
     }
@@ -40,12 +39,12 @@ public class ProductController {
         productService.saveProduct(productDto);
     }
 
-    @PutMapping(value = "/{productId}")
-    public ProductDto updateProduct(@RequestBody ProductDto productDto, @PathVariable Long productId) throws ProductNotFoundException {
-        return productService.updateProduct(productDto, productId);
+    @PutMapping
+    public ProductDto updateProduct(@RequestBody ProductDto productDto) throws ProductNotFoundException {
+        return productService.updateProduct(productDto);
     }
 
-    @DeleteMapping(value = "/{productId}")
+    @DeleteMapping("/{productId}")
     public void deleteProduct(@PathVariable Long productId) {
         productService.deleteProductById(productId);
     }
