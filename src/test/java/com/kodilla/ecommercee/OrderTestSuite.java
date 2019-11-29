@@ -45,7 +45,7 @@ public class OrderTestSuite {
         Order order = orderRepository.findById(1L).orElseThrow(OrderNotFoundException::new);
 
         //When
-
+        orderRepository.deleteById(1L);
         //Then
         Assert.assertEquals(2, orders.size());
     }
