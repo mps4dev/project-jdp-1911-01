@@ -23,14 +23,14 @@ public class ProductMapper {
     public List<ProductDto> mapToProductDtoList(List<Product> products) {
         if (products == null) return null;
         return products.stream()
-                .map(product -> new ProductDto())
+                .map(product -> mapToProductDto(product))
                 .collect(Collectors.toList());
     }
 
     public List<Product> mapToProductList(List<ProductDto> dtoProducts) {
         if (dtoProducts == null) return null;
         return dtoProducts.stream()
-                .map(product -> new Product())
+                .map(product -> mapToProduct(product))
                 .collect(Collectors.toList());
     }
 }
