@@ -5,37 +5,32 @@ import com.kodilla.ecommercee.domain.ProductDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
 public class ProductMapper {
 
     public ProductDto mapToProductDto(Product product) {
-        return Optional.of(new ProductDto(
-                product.getId(),
-                product.getName(),
-                product.getDescription(),
-                product.getPrice())).orElse(null);
+        if (product == null) return null;
+        return new ProductDto();
     }
 
     public Product mapToProduct(ProductDto productDto) {
-        return Optional.of(new Product(
-                productDto.getId(),
-                productDto.getName(),
-                productDto.getDescription(),
-                productDto.getPrice())).orElse(null);
+        if (productDto == null) return null;
+        return new Product();
     }
 
     public List<ProductDto> mapToProductDtoList(List<Product> products) {
+        if (products == null) return null;
         return products.stream()
-                .map(product -> new ProductDto(product.getId(), product.getName(), product.getDescription(), product.getPrice()))
+                .map(product -> new ProductDto())
                 .collect(Collectors.toList());
     }
 
     public List<Product> mapToProductList(List<ProductDto> dtoProducts) {
+        if (dtoProducts == null) return null;
         return dtoProducts.stream()
-                .map(product -> new Product(product.getId(), product.getName(), product.getDescription(), product.getPrice()))
+                .map(product -> new Product())
                 .collect(Collectors.toList());
     }
 }

@@ -8,8 +8,11 @@ import com.kodilla.ecommercee.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
+@Transactional
 @Service
 public class ProductService {
 
@@ -24,8 +27,8 @@ public class ProductService {
     }
 
     public ProductDto getProductById(Long id) throws ProductNotFoundException {
-        Product product = productRepository.findById(id).orElseThrow(ProductNotFoundException::new);
-        return productMapper.mapToProductDto(product);
+        Optional<Product> product = productRepository.findOrThrow(id);
+        return productMapper.mapToProductDto(product.get());
     }
 
     public Product saveProduct(ProductDto productDto) {
@@ -33,12 +36,8 @@ public class ProductService {
     }
 
     public ProductDto updateProduct(ProductDto productDto) throws ProductNotFoundException {
-        Product product = productRepository.findById(productDto.getId()).orElseThrow(ProductNotFoundException::new);
-        product.setName(productDto.getName());
-        product.setDescription(productDto.getDescription());
-        product.setPrice(productDto.getPrice());
-        productRepository.save(product);
-        return productMapper.mapToProductDto(product);
+        Optional<Product> product = productRepository.findOrThrow(0L); //TODO: Change 0L to productDto.getId() after ProductDto class implementation
+        return productMapper.mapToProductDto(product.get());
     }
 
     public void deleteProductById(Long id) {
