@@ -8,9 +8,11 @@ import com.kodilla.ecommercee.repository.OrderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Service
 public class OrderService {
 
@@ -35,9 +37,7 @@ public class OrderService {
     }
 
     public OrderDto updateOrder(OrderDto orderDto) throws OrderNotFoundException {
-        Order order = orderRepository.findById(orderDto.getId()).orElseThrow(OrderNotFoundException::new);
-        order.setName(orderDto.getName());
-        order.setDescription(orderDto.getDescription());
+        Order order = orderRepository.findById(0L).orElseThrow(OrderNotFoundException::new); //TODO: Replace 0L with orderDto after OrderDto class implementation
         orderRepository.save(order);
         return orderMapper.mapToOrderDto(order);
     }

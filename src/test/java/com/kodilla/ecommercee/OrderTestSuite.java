@@ -3,7 +3,6 @@ package com.kodilla.ecommercee;
 import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.OrderNotFoundException;
 import com.kodilla.ecommercee.repository.OrderRepository;
-import com.kodilla.ecommercee.service.OrderService;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -29,7 +28,7 @@ public class OrderTestSuite {
     public void setup() {
         orders = new ArrayList<>();
         for (int i = 0; i < 3; i++) {
-            Order order = new Order(0L, "Test " + i, "Description of test " + i);
+            Order order = new Order();
             orderRepository.save(order);
             orders.add(order);
         }
@@ -46,7 +45,6 @@ public class OrderTestSuite {
         Order order = orderRepository.findById(1L).orElseThrow(OrderNotFoundException::new);
 
         //When
-        orderRepository.deleteById(order.getId());
 
         //Then
         Assert.assertEquals(2, orders.size());
@@ -56,17 +54,12 @@ public class OrderTestSuite {
     public void addOrdertTest() throws OrderNotFoundException {
         //Given
         Order order = new Order();
-        order.setName("Test");
-        order.setDescription("Test order");
 
         //When
         orderRepository.save(order);
         orders.add(order);
-        Long i = order.getId();
 
         //Then
         Assert.assertEquals(3, orders.size());
-        Assert.assertEquals("Test", orders.get(3).getName());
-        Assert.assertEquals("Test order", orders.get(3).getDescription());
     }
 }

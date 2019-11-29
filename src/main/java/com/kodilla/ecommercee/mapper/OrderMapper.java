@@ -5,36 +5,31 @@ import com.kodilla.ecommercee.domain.OrderDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Component
 public class OrderMapper {
     public OrderDto mapToOrderDto(Order order) {
-        return Optional.of(new OrderDto(
-                order.getId(),
-                order.getName(),
-                order.getDescription()))
-                .orElse(null);
+        if (order == null) return null;
+        return new OrderDto();
     }
 
     public Order mapToOrder(OrderDto orderDto) {
-        return Optional.of(new Order(
-                orderDto.getId(),
-                orderDto.getName(),
-                orderDto.getDescription()))
-                .orElse(null);
+        if (orderDto == null) return null;
+        return new Order();
     }
 
     public List<OrderDto> mapToOrderDtoList(List<Order> orders) {
+        if (orders == null) return null;
         return orders.stream()
-                .map(order -> new OrderDto(order.getId(), order.getName(), order.getDescription()))
+                .map(order -> new OrderDto())
                 .collect(Collectors.toList());
     }
 
     public List<Order> mapToOrderList(List<OrderDto> dtoOrders) {
+        if (dtoOrders == null) return null;
         return dtoOrders.stream()
-                .map(order -> new Order(order.getId(), order.getName(), order.getDescription()))
+                .map(order -> new Order())
                 .collect(Collectors.toList());
     }
 }
