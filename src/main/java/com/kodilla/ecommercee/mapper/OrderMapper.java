@@ -22,14 +22,14 @@ public class OrderMapper {
     public List<OrderDto> mapToOrderDtoList(List<Order> orders) {
         if (orders == null) return null;
         return orders.stream()
-                .map(order -> new OrderDto())
+                .map(order -> mapToOrderDto(order))
                 .collect(Collectors.toList());
     }
 
     public List<Order> mapToOrderList(List<OrderDto> dtoOrders) {
         if (dtoOrders == null) return null;
         return dtoOrders.stream()
-                .map(order -> new Order())
+                .map(order -> mapToOrder(order))
                 .collect(Collectors.toList());
     }
 }
