@@ -2,8 +2,6 @@ package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.domain.ProductNotFoundException;
-import com.kodilla.ecommercee.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @CrossOrigin(origins = "*")
@@ -21,31 +20,28 @@ import java.util.List;
 @RequestMapping("/v1/products")
 public class ProductController {
 
-    @Autowired
-    private ProductService productService;
-
     @GetMapping
     public List<ProductDto> getProducts() {
-        return productService.getProducts();
+        return new ArrayList<>();
     }
 
     @GetMapping("/{productId}")
     public ProductDto getProduct(@PathVariable Long productId) throws ProductNotFoundException {
-        return productService.getProductById(productId);
+        return null;
     }
 
     @PostMapping
     public void createProduct(@RequestBody ProductDto productDto) {
-        productService.saveProduct(productDto);
+
     }
 
     @PutMapping
     public ProductDto updateProduct(@RequestBody ProductDto productDto) throws ProductNotFoundException {
-        return productService.updateProduct(productDto);
+        return null;
     }
 
     @DeleteMapping("/{productId}")
     public void deleteProduct(@PathVariable Long productId) {
-        productService.deleteProductById(productId);
+
     }
 }
