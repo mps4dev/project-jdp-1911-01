@@ -15,27 +15,25 @@ import java.util.List;
 public class GroupController {
     @Autowired
     private GroupService service;
-    @Autowired
-    private GroupMapper groupMapper;
 
     @GetMapping
     public List<GroupDto> getAll() {
-        return groupMapper.mapToGroupDtoList(service.getAllGroups());
+        return service.getAllGroups();
     }
 
     @GetMapping("/{id}")
-    public GroupDto get(@PathVariable(required = true) Long id) throws GroupNotFoundException {
-        return groupMapper.mapToGroupDto(service.getGroup(id).orElseThrow(GroupNotFoundException::new));
+    public GroupDto get(@PathVariable(required = true) long id) throws GroupNotFoundException {
+        return service.getGroup(id);
     }
 
     @PostMapping
     public void add(@RequestBody GroupDto groupDto) {
-        service.saveGroup(groupMapper.mapToGroup(groupDto));
+        service.saveGroup(groupDto);
     }
 
     @PutMapping
     public GroupDto update(@RequestBody GroupDto groupDto) {
-        return groupMapper.mapToGroupDto(service.saveGroup(groupMapper.mapToGroup(groupDto)));
+        return service.updateGroup(groupDto);
     }
 
 }
