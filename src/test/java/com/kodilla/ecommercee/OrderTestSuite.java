@@ -40,18 +40,18 @@ public class OrderTestSuite {
     }
 
     @Test
-    public void deleteProductTest() throws OrderNotFoundException {
+    public void deleteOrderTest() throws OrderNotFoundException {
         //Given
-        Order order = orderRepository.findById(1L).orElseThrow(OrderNotFoundException::new);
+        Order order = orderRepository.findOrThrow(1L);
 
         //When
-        orderRepository.deleteById(1L);
+        orderRepository.deleteById(1L); //TODO: Replace 1L with order.getId() after Order class implementation
         //Then
         Assert.assertEquals(2, orders.size());
     }
 
     @Test
-    public void addOrdertTest() throws OrderNotFoundException {
+    public void addOrderTest() throws OrderNotFoundException {
         //Given
         Order order = new Order();
 
@@ -60,6 +60,6 @@ public class OrderTestSuite {
         orders.add(order);
 
         //Then
-        Assert.assertEquals(3, orders.size());
+        Assert.assertEquals(orders.size(), orderRepository.findAll().size());
     }
 }

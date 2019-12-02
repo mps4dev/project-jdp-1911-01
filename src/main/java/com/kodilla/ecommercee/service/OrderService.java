@@ -26,8 +26,8 @@ public class OrderService {
         return orderMapper.mapToOrderDtoList(orderRepository.findAll());
     }
 
-    public OrderDto getOrderById(Long id) throws OrderNotFoundException {
-        Order order = orderRepository.findById(id).orElseThrow(OrderNotFoundException::new);
+    public OrderDto getOrderById(long id) throws OrderNotFoundException {
+        Order order = orderRepository.findOrThrow(id);
         return orderMapper.mapToOrderDto(order);
     }
 
@@ -37,12 +37,12 @@ public class OrderService {
     }
 
     public OrderDto updateOrder(OrderDto orderDto) throws OrderNotFoundException {
-        Order order = orderRepository.findById(0L).orElseThrow(OrderNotFoundException::new); //TODO: Replace 0L with orderDto after OrderDto class implementation
+        Order order = orderRepository.findOrThrow(0L); //TODO: Replace 0L with orderDto after OrderDto class implementation
         orderRepository.save(order);
         return orderMapper.mapToOrderDto(order);
     }
 
-    public void deleteOrderById(Long id) {
+    public void deleteOrderById(long id) {
         orderRepository.deleteById(id);
     }
 }

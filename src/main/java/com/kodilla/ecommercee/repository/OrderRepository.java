@@ -17,10 +17,10 @@ public interface OrderRepository extends CrudRepository<Order, Integer> {
     @Override
     Order save(Order order);
 
-    Optional<Order> findById(Long id);
+    Optional<Order> findById(long id);
 
-    default Optional<Order> findOrThrow(Long id) throws OrderNotFoundException {
-        Optional<Order> order = Optional.ofNullable(findById(id).orElseThrow(OrderNotFoundException::new));
+    default Order findOrThrow(long id) throws OrderNotFoundException {
+        Order order = findById(id).orElseThrow(OrderNotFoundException::new);
         return order;
     }
 
