@@ -21,41 +21,38 @@ import javax.persistence.OneToOne;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
-    @Column(name = "DELIVERY_NAME")
-    private String deliveryName;
+    @Column(name = "NAME")
+    private String name;
 
-    @Column(name = "DELIVERY_LASTNAME")
-    private String deliveryLastName;
+    @Column(name = "LASTNAME")
+    private String lastName;
 
-    @Column(name = "DELIVERY_ADRESS")
-    private String deliveryAdress;
+    @Column(name = "ADRESS")
+    private String adress;
 
-    @Column(name = "DELIVERY_HOUSE_NUMBER")
-    private String deliveryHouseNumber;
+    @Column(name = "HOUSE_NUMBER")
+    private String houseNumber;
 
-    @Column(name = "DELIVERY_FLAT_NUMBER")
-    private String deliveryFlatNumber;
+    @Column(name = "FLAT_NUMBER")
+    private String flatNumber;
 
-    @Column(name = "DELIVERY_ZIP_CODE")
-    private String deliveryZipCode;
+    @Column(name = "ZIP_CODE")
+    private String zipCode;
 
-    @Column(name = "DELIVERY_CITY")
-    private String deliveryCity;
+    @Column(name = "CITY")
+    private String city;
 
-    @Column(name = "ORDER_COMMENTS")
-    private String orderComments;
+    @Column(name = "COMMENTS")
+    private String comments;
 
-    @Column(name = "DELIVERY_TYPE")
+    @Column(name = "TYPE")
     private DeliveryType deliveryType;
 
     @Column(name = "PAYMENT_TYPE")
     private PaymentType paymentType;
-
-    @Column(name = "PAYMENT_METHOD")
-    private PaymentMethod paymentMethod;
 
     @OneToOne(
             cascade = CascadeType.ALL, //TODO: for discuss

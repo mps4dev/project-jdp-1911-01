@@ -20,8 +20,8 @@ import javax.persistence.OneToOne;
 public class Cart {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @OneToOne(
             cascade = CascadeType.ALL,

@@ -10,7 +10,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class OrderDto {
-    private Long id;
+    private long id;
     private String deliveryName;
     private String deliveryLastName;
     private String deliveryAdress;
