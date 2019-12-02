@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@Entity(name = "PRODUCT")
+@Entity(name = "PRODUCTS")
 public class Product {
 
     @Id
@@ -26,19 +26,13 @@ public class Product {
     @Column(name = "PRICE")
     private Double price;
 
-    @OneToMany(
-            cascade = CascadeType.ALL, //TODO: for discuss
-            mappedBy = "product",
-            fetch = FetchType.LAZY
+    @ManyToMany(cascade = CascadeType.ALL) //TODO: for discuss
+    @JoinTable(
+            name = "JOIN_CART_PRODUCT",
+            joinColumns = {@JoinColumn(name = "PRODUCTS_ID")},
+            inverseJoinColumns = {@JoinColumn(name = "CARTS_ID")}
     )
     private List<Cart> carts;
-
-    @OneToMany(
-            cascade = CascadeType.ALL, //TODO: for discuss
-            mappedBy = "product",
-            fetch = FetchType.LAZY
-    )
-    private List<Order> orders;
 
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")

@@ -16,8 +16,4 @@ public class Order {
     private Long id;
     private String name;
     private String description;
-
-    @ManyToOne
-    @JoinColumn(name = "PRODUCTS_ID")
-    private Product product;
 }
