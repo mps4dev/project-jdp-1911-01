@@ -13,7 +13,7 @@ public class OrderDto {
     private long id;
     private String name;
     private String lastName;
-    private String adress;
+    private String address;
     private String houseNumber;
     private String flatNumber;
     private String zipCode;
