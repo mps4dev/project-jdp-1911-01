@@ -30,8 +30,8 @@ public class Order {
     @Column(name = "LASTNAME")
     private String lastName;
 
-    @Column(name = "ADRESS")
-    private String adress;
+    @Column(name = "ADDRESS")
+    private String address;
 
     @Column(name = "HOUSE_NUMBER")
     private String houseNumber;

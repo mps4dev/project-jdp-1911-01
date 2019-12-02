@@ -21,7 +21,6 @@ public class OrderDto {
     private String orderComments;
     private DeliveryType deliveryType;
     private PaymentType paymentType;
-    private PaymentMethod paymentMethod;
     private Cart cart;
     private Double totalPrice;
 }
