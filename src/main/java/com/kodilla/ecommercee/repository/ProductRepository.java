@@ -16,12 +16,12 @@ public interface ProductRepository extends CrudRepository<Product, Integer> {
     @Override
     Product save(Product product);
 
-    Optional<Product> findById(Long id);
+    Optional<Product> findById(long id);
 
-    default Optional<Product> findOrThrow(Long id) throws ProductNotFoundException {
-        Optional<Product> product = Optional.ofNullable(findById(id).orElseThrow(ProductNotFoundException::new));
+    default Product findOrThrow(long id) throws ProductNotFoundException {
+        Product product = findById(id).orElseThrow(ProductNotFoundException::new);
         return product;
     }
 
-    void deleteById(Long id);
+    void deleteById(long id);
 }

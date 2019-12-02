@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 import java.util.List;
-import java.util.Optional;
 
 @Transactional
 @Service
@@ -27,8 +26,8 @@ public class ProductService {
     }
 
     public ProductDto getProductById(Long id) throws ProductNotFoundException {
-        Optional<Product> product = productRepository.findOrThrow(id);
-        return productMapper.mapToProductDto(product.get());
+        Product product = productRepository.findOrThrow(id);
+        return productMapper.mapToProductDto(product);
     }
 
     public Product saveProduct(ProductDto productDto) {
@@ -36,8 +35,8 @@ public class ProductService {
     }
 
     public ProductDto updateProduct(ProductDto productDto) throws ProductNotFoundException {
-        Optional<Product> product = productRepository.findOrThrow(0L); //TODO: Change 0L to productDto.getId() after ProductDto class implementation
-        return productMapper.mapToProductDto(product.get());
+        Product product = productRepository.findOrThrow(0L); //TODO: Change 0L to productDto.getId() after ProductDto class implementation
+        return productMapper.mapToProductDto(product);
     }
 
     public void deleteProductById(Long id) {
