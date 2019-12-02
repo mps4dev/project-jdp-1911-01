@@ -25,7 +25,7 @@ public class ProductService {
         return productMapper.mapToProductDtoList(productRepository.findAll());
     }
 
-    public ProductDto getProductById(Long id) throws ProductNotFoundException {
+    public ProductDto getProductById(long id) throws ProductNotFoundException {
         Product product = productRepository.findOrThrow(id);
         return productMapper.mapToProductDto(product);
     }
@@ -39,7 +39,7 @@ public class ProductService {
         return productMapper.mapToProductDto(product);
     }
 
-    public void deleteProductById(Long id) {
+    public void deleteProductById(long id) {
         productRepository.deleteById(id);
     }
 }
