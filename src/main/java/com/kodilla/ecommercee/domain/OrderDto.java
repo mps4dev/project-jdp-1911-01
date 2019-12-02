@@ -13,4 +13,5 @@ public class OrderDto {
     private Long id;
     private String name;
     private String description;
+    private Product product;
 }
