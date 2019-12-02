@@ -11,6 +11,17 @@ import lombok.Setter;
 @Setter
 public class OrderDto {
     private Long id;
-    private String name;
-    private String description;
+    private String deliveryName;
+    private String deliveryLastName;
+    private String deliveryAdress;
+    private String deliveryHouseNumber;
+    private String deliveryFlatNumber;
+    private String deliveryZipCode;
+    private String deliveryCity;
+    private String orderComments;
+    private DeliveryType deliveryType;
+    private PaymentType paymentType;
+    private PaymentMethod paymentMethod;
+    private Cart cart;
+    private Double totalPrice;
 }
