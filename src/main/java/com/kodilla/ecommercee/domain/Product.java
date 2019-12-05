@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.math.BigDecimal;
 import java.util.List;
 
 @AllArgsConstructor
@@ -17,14 +18,11 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private long id;
 
-    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "DESCRIPTION")
     private String description;
 
-    @Column(name = "PRICE")
-    private Double price;
+    private BigDecimal price;
 
     @ManyToMany(cascade = CascadeType.ALL) //TODO: for discuss
     @JoinTable(

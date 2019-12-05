@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @NoArgsConstructor
@@ -15,7 +16,7 @@ public class ProductDto {
     private Long id;
     private String name;
     private String description;
-    private Double price;
-    private List<Cart> carts;
-    private Group group;
+    private BigDecimal price;
+    private List<CartDto> dtoCarts;
+    private GroupDto groupDto;
 }
