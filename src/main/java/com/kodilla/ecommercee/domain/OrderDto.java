@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
@@ -21,6 +23,6 @@ public class OrderDto {
     private String comments;
     private DeliveryType deliveryType;
     private PaymentType paymentType;
-    private Cart cart;
-    private Double totalPrice;
+    private CartDto cartDto;
+    private BigDecimal totalPrice;
 }

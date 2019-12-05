@@ -13,6 +13,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import java.math.BigDecimal;
 
 @NoArgsConstructor
 @AllArgsConstructor
@@ -24,34 +25,24 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "NAME")
     private String name;
 
-    @Column(name = "LASTNAME")
     private String lastName;
 
-    @Column(name = "ADDRESS")
-    private String address;
+    private String street;
 
-    @Column(name = "HOUSE_NUMBER")
     private String houseNumber;
 
-    @Column(name = "FLAT_NUMBER")
     private String flatNumber;
 
-    @Column(name = "ZIP_CODE")
     private String zipCode;
 
-    @Column(name = "CITY")
     private String city;
 
-    @Column(name = "COMMENTS")
     private String comments;
 
-    @Column(name = "TYPE")
     private DeliveryType deliveryType;
 
-    @Column(name = "PAYMENT_TYPE")
     private PaymentType paymentType;
 
     @OneToOne(
@@ -61,6 +52,5 @@ public class Order {
     @JoinColumn(name = "CARTS_ID")
     private Cart cart;
 
-    @Column(name = "DELIVERY_NAME")
-    private Double totalPrice;
+    private BigDecimal totalPrice;
 }
