@@ -20,23 +20,23 @@ public class OrderController {
         return orderService.getOrders();
     }
 
-    @GetMapping("/{orderId}")
-    public OrderDto getOrder(@PathVariable Long orderId) throws OrderNotFoundException {
+    @GetMapping(value = "/{orderId}")
+    public OrderDto get(@PathVariable long orderId) throws OrderNotFoundException {
         return orderService.getOrderById(orderId);
     }
 
     @PostMapping
-    public void createOrder(@RequestBody OrderDto orderDto) {
+    public void create(@RequestBody OrderDto orderDto) {
         orderService.saveOrder(orderDto);
     }
 
     @PutMapping
-    public OrderDto updateOrder(@RequestBody OrderDto orderDto) throws OrderNotFoundException {
+    public OrderDto update(@RequestBody OrderDto orderDto) throws OrderNotFoundException {
         return orderService.updateOrder(orderDto);
     }
 
-    @DeleteMapping("/{orderId}")
-    public void deleteOrder(@PathVariable Long orderId) {
+    @DeleteMapping(value = "/{orderId}")
+    public void delete(@PathVariable long orderId) {
         orderService.deleteOrderById(orderId);
     }
 }

@@ -5,13 +5,24 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.math.BigDecimal;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
 public class OrderDto {
-    private Long id;
+    private long id;
     private String name;
-    private String description;
-    private Product product;
+    private String lastName;
+    private String address;
+    private String houseNumber;
+    private String flatNumber;
+    private String zipCode;
+    private String city;
+    private String comments;
+    private DeliveryType deliveryType;
+    private PaymentType paymentType;
+    private CartDto cartDto;
+    private BigDecimal totalPrice;
 }

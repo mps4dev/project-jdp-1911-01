@@ -5,15 +5,12 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.List;
-
-@NoArgsConstructor
 @AllArgsConstructor
-@Setter
+@NoArgsConstructor
 @Getter
-public class CartDto {
-    private long id;
+@Setter
+public class UserDto {
     private String name;
-    private List<ProductDto> products;
-    private OrderDto orderDto;
+    private Long id;
+    private boolean isBlocked;
 }
