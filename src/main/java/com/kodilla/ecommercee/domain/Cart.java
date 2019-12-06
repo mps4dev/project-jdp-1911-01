@@ -10,8 +10,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import java.util.List;
 
@@ -26,11 +24,6 @@ public class Cart {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name = "JOIN_CART_PRODUCT",
-            joinColumns = {@JoinColumn(name = "CARTS_ID")},
-            inverseJoinColumns = {@JoinColumn(name = "PRODUCTS_ID")}
-    )
+    @ManyToMany(cascade = CascadeType.ALL, mappedBy = "carts")
     private List<Product> product;
 }
