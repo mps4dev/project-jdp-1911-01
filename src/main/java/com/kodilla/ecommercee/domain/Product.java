@@ -25,7 +25,7 @@ public class Product {
 
     private BigDecimal price;
 
-    @ManyToMany(cascade = CascadeType.ALL) //TODO: for discuss
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) //TODO: for discuss
     @JoinTable(
             name = "JOIN_CART_PRODUCT",
             joinColumns = {@JoinColumn(name = "PRODUCTS_ID")},
