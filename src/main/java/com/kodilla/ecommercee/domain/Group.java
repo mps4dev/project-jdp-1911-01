@@ -27,10 +27,5 @@ public class Group {
         cascade = CascadeType.ALL,
         fetch = FetchType.LAZY
     )
-    private List<Product> getProducts = new ArrayList<>();
-
-    public Group(long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+    private List<Product> products;
 }

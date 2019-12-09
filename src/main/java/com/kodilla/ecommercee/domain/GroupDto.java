@@ -14,5 +14,5 @@ import java.util.List;
 public class GroupDto {
     private long id;
     private String name;
-    private List<ProductDto> dtoProducts;
+    private List<ProductDto> products;
 }
