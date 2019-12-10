@@ -21,25 +21,24 @@ public class ProductService {
     @Autowired
     private ProductMapper productMapper;
 
-    public List<ProductDto> getProducts() {
+    public List<ProductDto> getAll() {
         return productMapper.mapToProductDtoList(productRepository.findAll());
     }
 
-    public ProductDto getProductById(long id) throws ProductNotFoundException {
-        Product product = productRepository.findOrThrow(id);
+    public ProductDto get(long productId) throws ProductNotFoundException {
+        Product product = productRepository.findOrThrow(productId);
         return productMapper.mapToProductDto(product);
     }
 
-    public Product saveProduct(ProductDto productDto) {
+    public Product create(ProductDto productDto) {
         return productRepository.save(productMapper.mapToProduct(productDto));
     }
 
-    public ProductDto updateProduct(ProductDto productDto) throws ProductNotFoundException {
-        Product product = productRepository.findOrThrow(0L); //TODO: Change 0L to productDto.getId() after ProductDto class implementation
-        return productMapper.mapToProductDto(product);
+    public ProductDto update(ProductDto productDto) throws ProductNotFoundException {
+        return productMapper.mapToProductDto(productRepository.findOrThrow(productMapper.mapToProduct(productDto).getId()));
     }
 
-    public void deleteProductById(long id) {
+    public void delete(long id) {
         productRepository.deleteById(id);
     }
 }

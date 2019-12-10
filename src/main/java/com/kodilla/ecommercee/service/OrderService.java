@@ -22,27 +22,25 @@ public class OrderService {
     @Autowired
     private OrderMapper orderMapper;
 
-    public List<OrderDto> getOrders() {
+    public List<OrderDto> getAll() {
         return orderMapper.mapToOrderDtoList(orderRepository.findAll());
     }
 
-    public OrderDto getOrderById(long id) throws OrderNotFoundException {
-        Order order = orderRepository.findOrThrow(id);
+    public OrderDto get(long orderId) throws OrderNotFoundException {
+        Order order = orderRepository.findOrThrow(orderId);
         return orderMapper.mapToOrderDto(order);
     }
 
-    public OrderDto saveOrder(OrderDto orderDto) {
+    public OrderDto create(OrderDto orderDto) {
         orderRepository.save(orderMapper.mapToOrder(orderDto));
         return orderDto;
     }
 
-    public OrderDto updateOrder(OrderDto orderDto) throws OrderNotFoundException {
-        Order order = orderRepository.findOrThrow(0L); //TODO: Replace 0L with orderDto after OrderDto class implementation
-        orderRepository.save(order);
-        return orderMapper.mapToOrderDto(order);
+    public OrderDto update(OrderDto orderDto) throws OrderNotFoundException {
+        return orderMapper.mapToOrderDto(orderRepository.save(orderRepository.findOrThrow(orderMapper.mapToOrder(orderDto).getId())));
     }
 
-    public void deleteOrderById(long id) {
+    public void delete(long id) {
         orderRepository.deleteById(id);
     }
 }

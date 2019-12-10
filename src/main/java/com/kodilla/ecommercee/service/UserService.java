@@ -23,18 +23,16 @@ public class UserService {
 
     private final static Random RANDOM_KEY = new Random();
 
-    public UserDto getUser(long userId) throws UserNotFoundException {
-        User user = repository.findOrThrow(userId);
-        return userMapper.mapToUserDto(user);
+    public UserDto get(long userId) throws UserNotFoundException {
+        return userMapper.mapToUserDto(repository.findOrThrow(userId));
     }
 
-    public User saveUser(UserDto userDto) {
+    public User create(UserDto userDto) {
         return repository.save(userMapper.mapToUser(userDto));
     }
 
-    public void deleteUser(long userId) throws UserNotFoundException {
-        User user = repository.findOrThrow(userId);
-        repository.delete(user);
+    public void delete(long userId) throws UserNotFoundException {
+        repository.delete(repository.findOrThrow(userId));
     }
 
     public UserDto blockUser(long userId) throws UserNotFoundException {

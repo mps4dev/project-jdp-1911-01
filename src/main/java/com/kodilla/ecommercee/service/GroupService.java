@@ -19,19 +19,19 @@ public class GroupService {
     @Autowired
     private GroupMapper groupMapper;
 
-    public List<GroupDto> getAllGroups() {
+    public List<GroupDto> getAll() {
         return groupMapper.mapToGroupDtoList(groupRepository.findAll());
     }
 
-    public GroupDto getGroup(long id) throws GroupNotFoundException  {
-        return groupMapper.mapToGroupDto(groupRepository.findById(id).orElseThrow(GroupNotFoundException::new));
+    public GroupDto get(long groupId) throws GroupNotFoundException  {
+        return groupMapper.mapToGroupDto(groupRepository.findById(groupId).orElseThrow(GroupNotFoundException::new));
     }
 
-    public Group saveGroup(GroupDto groupDto) {
+    public Group create(GroupDto groupDto) {
         return groupRepository.save(groupMapper.mapToGroup(groupDto));
     }
 
-    public GroupDto updateGroup(GroupDto groupDto) {
+    public GroupDto update(GroupDto groupDto) {
         return groupMapper.mapToGroupDto(groupRepository.save(groupMapper.mapToGroup(groupDto)));
     }
 }

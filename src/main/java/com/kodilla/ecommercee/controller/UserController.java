@@ -17,17 +17,17 @@ public class UserController {
 
     @GetMapping("/{userId}")
     public UserDto get(@PathVariable long userId) throws UserNotFoundException {
-        return userService.getUser(userId);
+        return userService.get(userId);
     }
 
     @DeleteMapping("/{userId}")
     public void delete(@PathVariable long userId) throws UserNotFoundException {
-        userService.deleteUser(userId);
+        userService.delete(userId);
     }
 
     @PostMapping
     public void create(@RequestBody UserDto userDto) {
-        userService.saveUser(userDto);
+        userService.create(userDto);
     }
 
     @PutMapping("/{userId}")
