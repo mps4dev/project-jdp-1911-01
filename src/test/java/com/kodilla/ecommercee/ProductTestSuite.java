@@ -18,10 +18,10 @@ public class ProductTestSuite {
         ProductDto product = new ProductDto();
 
         //When
-        productService.saveProduct(product);
+        productService.create(product);
 
         //Then
-        Assert.assertEquals(1, productService.getProducts().size());
+        Assert.assertEquals(1, productService.getAll().size());
     }
 
     @Test
@@ -31,11 +31,11 @@ public class ProductTestSuite {
         ProductDto product2 = new ProductDto();
 
         //When
-        productService.saveProduct(product);
-        productService.saveProduct(product2);
-        productService.deleteProductById(2L);
+        productService.create(product);
+        productService.create(product2);
+        productService.delete(2L);
 
         //Then
-        Assert.assertEquals(1, productService.getProducts().size());
+        Assert.assertEquals(1, productService.getAll().size());
     }
 }

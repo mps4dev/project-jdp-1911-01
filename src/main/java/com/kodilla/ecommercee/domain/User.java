@@ -1,11 +1,12 @@
 package com.kodilla.ecommercee.domain;
 
+import com.kodilla.ecommercee.GenericEntity;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @AllArgsConstructor
@@ -13,20 +14,12 @@ import java.util.List;
 @Getter
 @Setter
 @Entity(name = "USERS")
-public class User {
-    @Column(name = "NAME")
-    private String name;
+public class User extends GenericEntity {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private Long id;
-
-    @Column(name = "IS_BLOCKED")
     private boolean isBlocked;
 
-    public User(String name, long id, boolean isBlocked) {
-        this.name = name;
-        this.id = id;
+    public User(long id, String name, boolean isBlocked) {
+        super(id, name);
         this.isBlocked = isBlocked;
     }
 
@@ -40,5 +33,5 @@ public class User {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Order> orders = new ArrayList<>();
+    private List<Order> order;
 }

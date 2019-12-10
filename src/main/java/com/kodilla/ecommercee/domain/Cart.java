@@ -1,27 +1,20 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.Data;
+import com.kodilla.ecommercee.GenericEntity;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 import java.util.List;
 
+@AllArgsConstructor
 @NoArgsConstructor
-@Data
+@Getter
+@Setter
 @Entity(name = "CARTS")
-public class Cart {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+public class Cart extends GenericEntity {
 
     @OneToOne(
             cascade = CascadeType.ALL,
@@ -30,8 +23,7 @@ public class Cart {
     @JoinColumn(name = "ORDER_ID")
     private Order order;
 
-    private String name;
 
     @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "carts")
-    private List<Product> product;
+    private List<Product> products;
 }

@@ -9,16 +9,16 @@ public class UserMapper {
     public UserDto mapToUserDto(final User user) {
         if (user == null) return null;
         return new UserDto(
-                user.getName(),
                 user.getId(),
+                user.getName(),
                 user.isBlocked());
     }
 
     public User mapToUser(final UserDto userDto) {
         if (userDto == null) return null;
         return new User(
-                userDto.getName(),
                 userDto.getId(),
+                userDto.getName(),
                 userDto.isBlocked());
     }
 }
