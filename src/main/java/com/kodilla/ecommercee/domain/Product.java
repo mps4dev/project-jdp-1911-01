@@ -27,7 +27,7 @@ public class Product {
 
     @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}) //TODO: for discuss
     @JoinTable(
-            name = "JOIN_CART_PRODUCT",
+            name = "PRODUCT_TO_CART",
             joinColumns = {@JoinColumn(name = "PRODUCTS_ID")},
             inverseJoinColumns = {@JoinColumn(name = "CARTS_ID")}
     )

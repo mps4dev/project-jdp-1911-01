@@ -32,6 +32,6 @@ public class Cart {
 
     private String name;
 
-    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE}, mappedBy = "carts")
+    @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "carts")
     private List<Product> product;
 }
