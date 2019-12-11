@@ -1,7 +1,6 @@
 package com.kodilla.ecommercee;
 
 import com.kodilla.ecommercee.domain.ProductDto;
-import com.kodilla.ecommercee.domain.ProductNotFoundException;
 import com.kodilla.ecommercee.service.ProductService;
 import org.junit.Assert;
 import org.junit.Test;
@@ -13,29 +12,29 @@ public class ProductTestSuite {
     private ProductService productService;
 
     @Test
-    public void addProductTest() throws ProductNotFoundException {
+    public void addProductTest() {
         //Given
         ProductDto product = new ProductDto();
 
         //When
-        productService.saveProduct(product);
+        productService.create(product);
 
         //Then
-        Assert.assertEquals(1, productService.getProducts().size());
+        Assert.assertEquals(1, productService.getAll().size());
     }
 
     @Test
-    public void deleteProductTest() throws ProductNotFoundException {
+    public void deleteProductTest() {
         //Given
         ProductDto product = new ProductDto();
         ProductDto product2 = new ProductDto();
 
         //When
-        productService.saveProduct(product);
-        productService.saveProduct(product2);
-        productService.deleteProductById(2L);
+        productService.create(product);
+        productService.create(product2);
+        productService.delete(2L);
 
         //Then
-        Assert.assertEquals(1, productService.getProducts().size());
+        Assert.assertEquals(1, productService.getAll().size());
     }
 }

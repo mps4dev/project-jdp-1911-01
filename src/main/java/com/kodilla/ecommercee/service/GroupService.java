@@ -1,8 +1,8 @@
 package com.kodilla.ecommercee.service;
 
+import com.kodilla.ecommercee.domain.EntityNotFoundException;
 import com.kodilla.ecommercee.domain.Group;
 import com.kodilla.ecommercee.domain.GroupDto;
-import com.kodilla.ecommercee.domain.GroupNotFoundException;
 import com.kodilla.ecommercee.mapper.GroupMapper;
 import com.kodilla.ecommercee.repository.GroupRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +23,8 @@ public class GroupService {
         return groupMapper.mapToGroupDtoList(groupRepository.findAll());
     }
 
-    public GroupDto get(long groupId) throws GroupNotFoundException  {
-        return groupMapper.mapToGroupDto(groupRepository.findById(groupId).orElseThrow(GroupNotFoundException::new));
+    public GroupDto get(long groupId) throws EntityNotFoundException {
+        return groupMapper.mapToGroupDto(groupRepository.findOrThrow(groupId));
     }
 
     public Group create(GroupDto groupDto) {

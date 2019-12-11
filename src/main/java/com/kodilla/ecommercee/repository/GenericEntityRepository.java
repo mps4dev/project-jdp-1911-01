@@ -10,6 +10,8 @@ import java.util.Optional;
 
 @Repository
 public interface GenericEntityRepository<T> extends CrudRepository<T, Long> {
+
+    EntityNotFoundException ENFE = new EntityNotFoundException("Entity not found.");
     @Override
     List<T> findAll();
 
@@ -20,7 +22,7 @@ public interface GenericEntityRepository<T> extends CrudRepository<T, Long> {
     void delete();
 
     default T findOrThrow(long id) throws EntityNotFoundException {
-        T tObject = findById(id).orElseThrow(EntityNotFoundException::new);
+        T tObject = findById(id).orElseThrow(() -> ENFE);
         return tObject;
     }
 }

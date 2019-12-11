@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee;
 
+import com.kodilla.ecommercee.domain.EntityNotFoundException;
 import com.kodilla.ecommercee.domain.Order;
-import com.kodilla.ecommercee.domain.OrderNotFoundException;
 import com.kodilla.ecommercee.repository.OrderRepository;
 import org.junit.After;
 import org.junit.Assert;
@@ -40,7 +40,7 @@ public class OrderTestSuite {
     }
 
     @Test
-    public void deleteOrderTest() throws OrderNotFoundException {
+    public void deleteOrderTest() throws EntityNotFoundException {
         //Given
         Order order = orderRepository.findOrThrow(1L);
 
@@ -51,7 +51,7 @@ public class OrderTestSuite {
     }
 
     @Test
-    public void addOrderTest() throws OrderNotFoundException {
+    public void addOrderTest() {
         //Given
         Order order = new Order();
 

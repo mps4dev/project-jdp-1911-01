@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.domain.EntityNotFoundException;
 import com.kodilla.ecommercee.domain.GroupDto;
-import com.kodilla.ecommercee.domain.GroupNotFoundException;
 import com.kodilla.ecommercee.service.GroupService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +21,7 @@ public class GroupController {
     }
 
     @GetMapping("/{groupId}")
-    public GroupDto get(@PathVariable long groupId) throws GroupNotFoundException {
+    public GroupDto get(@PathVariable long groupId) throws EntityNotFoundException {
         return groupService.get(groupId);
     }
 
