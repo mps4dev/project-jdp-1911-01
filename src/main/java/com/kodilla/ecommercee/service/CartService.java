@@ -30,7 +30,6 @@ public class CartService {
 
     public List<ProductDto> getAll(long cartId) throws EntityNotFoundException {
         List<Product> products = cartRepository.findOrThrow(cartId).getProducts();
-                //.findOrThrow(cartId).getProducts();
         return productMapper.mapToProductDtoList(products);
     }
 
