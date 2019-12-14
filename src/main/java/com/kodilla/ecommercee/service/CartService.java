@@ -2,6 +2,7 @@ package com.kodilla.ecommercee.service;
 
 import com.kodilla.ecommercee.domain.*;
 import com.kodilla.ecommercee.mapper.CartMapper;
+import com.kodilla.ecommercee.mapper.OrderMapper;
 import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.repository.CartRepository;
 import com.kodilla.ecommercee.repository.ProductRepository;
@@ -23,6 +24,10 @@ public class CartService {
     private CartRepository cartRepository;
     @Autowired
     private CartMapper cartMapper;
+    @Autowired
+    private OrderMapper orderMapper;
+    @Autowired
+    private OrderService orderService;
 
     public void create(CartDto cartDto) {
         cartRepository.save(cartMapper.mapToCart(cartDto));
@@ -30,7 +35,6 @@ public class CartService {
 
     public List<ProductDto> getAll(long cartId) throws EntityNotFoundException {
         List<Product> products = cartRepository.findOrThrow(cartId).getProducts();
-                //.findOrThrow(cartId).getProducts();
         return productMapper.mapToProductDtoList(products);
     }
 
@@ -45,8 +49,10 @@ public class CartService {
     }
 
     public OrderDto createOrder(CartDto cartDto) {
-        return new OrderDto();
+        Order order = new Order();
+        order.setCart(cartMapper.mapToCart(cartDto));
+        OrderDto orderDto = orderMapper.mapToOrderDto(order);
+        orderService.create(orderDto);
+        return orderDto;
     }
-//    TODO: implementing when having OrderMapper and Repository
-
 }
