@@ -12,7 +12,7 @@ public class ProductTestSuite {
     @Autowired
     private ProductService productService;
 
-    @Test
+    /*@Test
     public void addProductTest() throws ProductNotFoundException {
         //Given
         ProductDto product = new ProductDto();
@@ -37,5 +37,5 @@ public class ProductTestSuite {
 
         //Then
         Assert.assertEquals(1, productService.getProducts().size());
-    }
+    }*/
 }

@@ -6,9 +6,12 @@ import com.kodilla.ecommercee.mapper.ProductMapper;
 import com.kodilla.ecommercee.repository.CartRepository;
 import com.kodilla.ecommercee.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,8 +27,8 @@ public class CartService {
     @Autowired
     private CartMapper cartMapper;
 
-    public void create(CartDto cartDto) {
-        cartRepository.save(cartMapper.mapToCart(cartDto));
+    public Cart create(CartDto cartDto) {
+        return cartRepository.save(cartMapper.mapToCart(cartDto));
     }
 
     public List<ProductDto> getAll(long cartId) throws EntityNotFoundException {
