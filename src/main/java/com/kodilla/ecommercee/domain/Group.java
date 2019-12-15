@@ -2,6 +2,7 @@ package com.kodilla.ecommercee.domain;
 
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 import java.util.List;
 
@@ -14,6 +15,7 @@ public class Group {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotNull
     private String name;
 
     @OneToMany(
@@ -23,4 +25,9 @@ public class Group {
         fetch = FetchType.LAZY
     )
     private List<Product> products;
+
+    public Group(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
