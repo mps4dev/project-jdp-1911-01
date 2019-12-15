@@ -8,7 +8,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "GROUPS")
+@Entity(name = "PRODUCT_GROUPS")
 public class Group {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
