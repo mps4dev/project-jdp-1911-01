@@ -15,7 +15,7 @@ Technologies:
 ## Demo
 
 You can see demo version here: [Demo](www.google.pl). 
-This project does not contain frontend part, so you can test it by Postman.
+This project does not contain frontend part, so you can test it by Postman or by Swagger.
 
 
 ## Requirements
