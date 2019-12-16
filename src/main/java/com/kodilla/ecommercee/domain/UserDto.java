@@ -6,7 +6,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserDto {
-    private String name;
     private Long id;
+    private String name;
     private boolean isBlocked;
 }

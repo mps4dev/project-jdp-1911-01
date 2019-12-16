@@ -1,31 +1,23 @@
 package com.kodilla.ecommercee;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 @Entity
 public class GenericEntity {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String value;
-
-    public GenericEntity() {
-    }
-
-    public String getValue() {
-        return value;
-    }
-
-    public Long getId() {
-
-        return id;
-    }
-
-    public GenericEntity(String value) {
-
-        this.value = value;
-    }
+    private String name;
 }

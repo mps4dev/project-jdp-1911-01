@@ -39,7 +39,7 @@ public class OrderTestSuite {
         orderRepository.deleteAll();
     }
 
-    @Test
+   /* @Test
     public void deleteOrderTest() throws EntityNotFoundException {
         //Given
         Order order = orderRepository.findOrThrow(1L);
@@ -61,5 +61,6 @@ public class OrderTestSuite {
 
         //Then
         Assert.assertEquals(orders.size(), orderRepository.findAll().size());
-    }
+    }*/
+
 }
