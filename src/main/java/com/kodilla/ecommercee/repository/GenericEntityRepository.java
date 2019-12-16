@@ -7,7 +7,6 @@ import org.springframework.data.repository.NoRepositoryBean;
 import java.util.List;
 import java.util.Optional;
 
-
 @NoRepositoryBean
 public interface GenericEntityRepository<T> extends JpaRepository<T, Long> {
     @Override
@@ -20,7 +19,7 @@ public interface GenericEntityRepository<T> extends JpaRepository<T, Long> {
     void delete(T entity);
 
     default T findOrThrow(long id) throws EntityNotFoundException {
-        T tObject = findById(id).orElseThrow(EntityNotFoundException::new);
+        T tObject = findById(id).orElseThrow(() -> new EntityNotFoundException("Entity with id: " + id + " - not found"));
         return tObject;
     }
 }

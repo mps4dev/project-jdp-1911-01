@@ -4,7 +4,6 @@ package com.kodilla.ecommercee.controller;
 import com.kodilla.ecommercee.domain.EntityNotFoundException;
 import com.kodilla.ecommercee.domain.UserDto;
 import com.kodilla.ecommercee.domain.UserNotAuthenticated;
-import com.kodilla.ecommercee.domain.UserNotFoundException;
 import com.kodilla.ecommercee.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +36,7 @@ public class UserController {
     }
 
     @GetMapping("/{userId}/uniqueKey")
-    public Long getUniqueKey(@PathVariable long userId, @RequestParam String userName) throws EntityNotFoundException {
+    public Long getUniqueKey(@PathVariable long userId, @RequestParam String userName) throws EntityNotFoundException, UserNotAuthenticated {
         return userService.getUniqueKey(userId, userName);
     }
 }
