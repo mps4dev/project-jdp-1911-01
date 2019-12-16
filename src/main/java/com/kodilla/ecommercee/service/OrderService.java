@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.service;
 
+import com.kodilla.ecommercee.domain.EntityNotFoundException;
 import com.kodilla.ecommercee.domain.Order;
 import com.kodilla.ecommercee.domain.OrderDto;
 import com.kodilla.ecommercee.domain.OrderNotFoundException;
@@ -26,7 +27,7 @@ public class OrderService {
         return orderMapper.mapToOrderDtoList(orderRepository.findAll());
     }
 
-    public OrderDto get(long orderId) throws OrderNotFoundException {
+    public OrderDto get(long orderId) throws EntityNotFoundException {
         Order order = orderRepository.findOrThrow(orderId);
         return orderMapper.mapToOrderDto(order);
     }
@@ -36,11 +37,11 @@ public class OrderService {
         return orderDto;
     }
 
-    public OrderDto update(OrderDto orderDto) throws OrderNotFoundException {
+    public OrderDto update(OrderDto orderDto) throws EntityNotFoundException {
         return orderMapper.mapToOrderDto(orderRepository.save(orderRepository.findOrThrow(orderMapper.mapToOrder(orderDto).getId())));
     }
 
-    public void delete(long id) {
-        orderRepository.deleteById(id);
+    public void delete(long orderId) {
+        orderRepository.deleteById(orderId);
     }
 }

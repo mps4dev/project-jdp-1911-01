@@ -1,11 +1,7 @@
 package com.kodilla.ecommercee.domain;
 
 import com.kodilla.ecommercee.GenericEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
@@ -22,8 +18,12 @@ public class Cart extends GenericEntity {
     )
     @JoinColumn(name = "ORDER_ID")
     private Order order;
-
-
-    @ManyToMany(cascade = CascadeType.PERSIST, mappedBy = "carts")
+  
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="JOIN_PRODUCTS_CARTS",
+            joinColumns = {@JoinColumn(name = "CART_ID", referencedColumnName = "ID")},
+            inverseJoinColumns = {@JoinColumn(name = "PRODUCT_ID", referencedColumnName = "ID")}
+    )
     private List<Product> products;
 }

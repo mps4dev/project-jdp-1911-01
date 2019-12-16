@@ -21,17 +21,17 @@ public class CartController {
     }
 
     @GetMapping
-    public List<ProductDto> getAll(@PathVariable long cartId) throws CartNotFoundException {
+    public List<ProductDto> getAll(@PathVariable long cartId) throws EntityNotFoundException {
         return cartService.getAll(cartId);
     }
 
     @PostMapping("/{cartId}")
-    public void add(@RequestParam long productId, @PathVariable long cartId) throws ProductNotFoundException, CartNotFoundException {
+    public void add(@RequestParam long productId, @PathVariable long cartId) throws EntityNotFoundException {
         cartService.add(productId, cartId);
     }
 
     @DeleteMapping("/{cartId}")
-    public void remove(@PathVariable long cartId, @RequestParam long productId) throws ProductNotFoundException, CartNotFoundException {
+    public void remove(@PathVariable long cartId, @RequestParam long productId) throws EntityNotFoundException {
         cartService.remove(productId, cartId);
     }
 

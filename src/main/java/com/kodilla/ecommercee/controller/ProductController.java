@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.controller;
 
+import com.kodilla.ecommercee.domain.EntityNotFoundException;
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.domain.ProductNotFoundException;
 import com.kodilla.ecommercee.service.ProductService;
@@ -30,7 +31,7 @@ public class ProductController {
     }
 
     @GetMapping("/{productId}")
-    public ProductDto get(@PathVariable long productId) throws ProductNotFoundException {
+    public ProductDto get(@PathVariable long productId) throws EntityNotFoundException {
         return productService.get(productId);
     }
 
@@ -40,7 +41,7 @@ public class ProductController {
     }
 
     @PutMapping
-    public ProductDto update(@RequestBody ProductDto productDto) throws ProductNotFoundException {
+    public ProductDto update(@RequestBody ProductDto productDto) throws EntityNotFoundException {
         return productService.update(productDto);
     }
 

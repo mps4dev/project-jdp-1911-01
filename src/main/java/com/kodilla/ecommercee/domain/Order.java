@@ -1,20 +1,17 @@
 package com.kodilla.ecommercee.domain;
 
 import com.kodilla.ecommercee.GenericEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@NoArgsConstructor
+@Data
 @AllArgsConstructor
-@Setter
-@Getter
+@NoArgsConstructor
 @Entity(name = "ORDERS")
+
 public class Order extends GenericEntity {
+
 
     private String lastName;
 
@@ -34,14 +31,14 @@ public class Order extends GenericEntity {
 
     private PaymentType paymentType;
 
+    private BigDecimal totalPrice;
+
     @OneToOne(
             cascade = CascadeType.ALL, //TODO: for discuss
             fetch = FetchType.LAZY
     )
     @JoinColumn(name = "CARTS_ID")
     private Cart cart;
-
-    private BigDecimal totalPrice;
 
     @ManyToOne
     @JoinColumn(name = "USER_ID")

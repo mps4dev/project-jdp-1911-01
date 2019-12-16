@@ -1,18 +1,13 @@
 package com.kodilla.ecommercee.domain;
 
 import com.kodilla.ecommercee.GenericEntity;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-
+import lombok.*;
 import javax.persistence.*;
 import java.util.List;
 
+@Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Getter
-@Setter
 @Entity(name = "USERS")
 public class User extends GenericEntity {
 
@@ -33,5 +28,5 @@ public class User extends GenericEntity {
             cascade = CascadeType.ALL,
             fetch = FetchType.LAZY
     )
-    private List<Order> order;
+    private List<Order> orders;
 }

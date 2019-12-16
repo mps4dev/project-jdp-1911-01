@@ -1,5 +1,6 @@
 package com.kodilla.ecommercee.service;
 
+import com.kodilla.ecommercee.domain.EntityNotFoundException;
 import com.kodilla.ecommercee.domain.Product;
 import com.kodilla.ecommercee.domain.ProductDto;
 import com.kodilla.ecommercee.domain.ProductNotFoundException;
@@ -25,7 +26,7 @@ public class ProductService {
         return productMapper.mapToProductDtoList(productRepository.findAll());
     }
 
-    public ProductDto get(long productId) throws ProductNotFoundException {
+    public ProductDto get(long productId) throws EntityNotFoundException {
         Product product = productRepository.findOrThrow(productId);
         return productMapper.mapToProductDto(product);
     }
@@ -34,7 +35,7 @@ public class ProductService {
         return productRepository.save(productMapper.mapToProduct(productDto));
     }
 
-    public ProductDto update(ProductDto productDto) throws ProductNotFoundException {
+    public ProductDto update(ProductDto productDto) throws EntityNotFoundException {
         return productMapper.mapToProductDto(productRepository.findOrThrow(productMapper.mapToProduct(productDto).getId()));
     }
 

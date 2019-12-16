@@ -1,6 +1,7 @@
 package com.kodilla.ecommercee.controller;
 
 
+import com.kodilla.ecommercee.domain.EntityNotFoundException;
 import com.kodilla.ecommercee.domain.UserDto;
 import com.kodilla.ecommercee.domain.UserNotAuthenticated;
 import com.kodilla.ecommercee.domain.UserNotFoundException;
@@ -16,12 +17,12 @@ public class UserController {
     UserService userService;
 
     @GetMapping("/{userId}")
-    public UserDto get(@PathVariable long userId) throws UserNotFoundException {
+    public UserDto get(@PathVariable long userId) throws EntityNotFoundException {
         return userService.get(userId);
     }
 
     @DeleteMapping("/{userId}")
-    public void delete(@PathVariable long userId) throws UserNotFoundException {
+    public void delete(@PathVariable long userId) throws EntityNotFoundException {
         userService.delete(userId);
     }
 
@@ -31,12 +32,12 @@ public class UserController {
     }
 
     @PutMapping("/{userId}")
-    public UserDto blockUser(@PathVariable long userId) throws UserNotFoundException {
+    public UserDto blockUser(@PathVariable long userId) throws EntityNotFoundException {
         return userService.blockUser(userId);
     }
 
     @GetMapping("/{userId}/uniqueKey")
-    public Long getUniqueKey(@PathVariable long userId, @RequestParam String userName) throws UserNotFoundException, UserNotAuthenticated {
+    public Long getUniqueKey(@PathVariable long userId, @RequestParam String userName) throws EntityNotFoundException {
         return userService.getUniqueKey(userId, userName);
     }
 }
