@@ -3,6 +3,7 @@ package com.kodilla.ecommercee.domain;
 import com.kodilla.ecommercee.GenericEntity;
 import lombok.*;
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @AllArgsConstructor
@@ -11,6 +12,8 @@ import java.util.List;
 @Setter
 @Entity(name = "PRODUCT_GROUPS")
 public class Group extends GenericEntity {
+    @NotNull
+    private String name;
 
     public Group(Long id, String name, List<Product> products) {
         super(id, name);
@@ -24,4 +27,9 @@ public class Group extends GenericEntity {
             fetch = FetchType.LAZY
     )
     private List<Product> products;
+
+    public Group(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
