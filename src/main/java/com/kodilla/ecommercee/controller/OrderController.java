@@ -2,7 +2,6 @@ package com.kodilla.ecommercee.controller;
 
 import com.kodilla.ecommercee.domain.EntityNotFoundException;
 import com.kodilla.ecommercee.domain.OrderDto;
-import com.kodilla.ecommercee.domain.OrderNotFoundException;
 import com.kodilla.ecommercee.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
 package com.kodilla.ecommercee.domain;
 
+import com.kodilla.ecommercee.GenericEntity;
 import lombok.*;
-
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,14 +9,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "USERS")
-public class User {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
+public class User extends GenericEntity {
 
     private boolean isBlocked;
+
+    public User(long id, String name, boolean isBlocked) {
+        super(id, name);
+        this.isBlocked = isBlocked;
+    }
 
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "CART_ID")
@@ -29,10 +29,4 @@ public class User {
             fetch = FetchType.LAZY
     )
     private List<Order> orders;
-
-    public User(String name, long id, boolean isBlocked) {
-        this.name = name;
-        this.id = id;
-        this.isBlocked = isBlocked;
-    }
 }

@@ -38,12 +38,12 @@ public class UserService {
         return userMapper.mapToUserDto(userToBlock);
     }
 
-    public Long getUniqueKey(long userId, String userName) throws EntityNotFoundException {
+    public Long getUniqueKey(long userId, String userName) throws EntityNotFoundException, UserNotAuthenticated {
         User userForKey = repository.findOrThrow(userId);
         if (userForKey.getName().equals(userName)) {
             return userId + RANDOM_KEY.nextLong();
         } else {
-            throw new EntityNotFoundException();
+            throw new UserNotAuthenticated();
         }
     }
 }
