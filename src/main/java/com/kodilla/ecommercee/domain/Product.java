@@ -1,24 +1,16 @@
 package com.kodilla.ecommercee.domain;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
+import com.kodilla.ecommercee.GenericEntity;
+import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
-import java.util.List;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity(name = "PRODUCTS")
-public class Product {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-
-    private String name;
+public class Product extends GenericEntity {
 
     private String description;
 
@@ -35,5 +27,4 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "GROUP_ID")
     private Group group;
-
 }
