@@ -12,6 +12,20 @@ import java.util.List;
 @Entity(name = "PRODUCTS")
 public class Product extends GenericEntity {
 
+    public Product(Long id, String name, String description, BigDecimal price) {
+        super(id, name);
+        this.description = description;
+        this.price = price;
+    }
+
+    public Product(Long id, String name, String description, BigDecimal price, List<Cart> carts, Group group) {
+        super(id, name);
+        this.description = description;
+        this.price = price;
+        this.carts = carts;
+        this.group = group;
+    }
+
     private String description;
 
     private BigDecimal price;
